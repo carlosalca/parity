@@ -79,7 +79,11 @@ Otro comaando:
 ````bash
 $ docker run -ti -p 8545:8545 -p 8546:8546 -p 30303:30303 -p 30303:30303/udp -v ~/ethereum/parity/:/home/parity/.local/share/io.parity.ethereum/   parity/parity:v2.5.5-stable --config /home/parity/.local/share/io.parity.ethereum/config.toml
 ````
+## Pending:
 
+* Docker-compose
+* Sync log meaning
+* Screenshots
  
 
 ## Referencias
