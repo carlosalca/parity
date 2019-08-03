@@ -74,11 +74,22 @@ Tras esto ejecutamos el siguiente comando:
 docker run -ti -v ~/ethereum/parity/:/home/parity/.local/share/io.parity.ethereum/ -p 8545:8545 parity/parity:v2.5.5-stable --config /home/parity/.local/share/io.parity.ethereum/config.toml
 ````
 
-Otro comaando:
+Otro comando:
 
 ````bash
 $ docker run -ti -p 8545:8545 -p 8546:8546 -p 30303:30303 -p 30303:30303/udp -v ~/ethereum/parity/:/home/parity/.local/share/io.parity.ethereum/   parity/parity:v2.5.5-stable --config /home/parity/.local/share/io.parity.ethereum/config.toml
 ````
+
+###Syncing log meaning
+
+Cuando se despliega el contendor por primera vez, Parity tiene que sincronizarse y descargarse^* todos los bloques de la red establecida. Los parametros varían en función si se he elige el modo light o no. Durante esta sincronización del modo light se pueden ver los siguientes parámetros:
+
+- **\#10643457**: numero del último bloque procesado.
+- **  **
+-
+-
+-
+
 ## Pending:
 
 * Docker-compose
