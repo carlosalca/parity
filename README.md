@@ -106,11 +106,48 @@ Una vez el nodo se encuentra sincronizado, en el log que aparece en la pantalla 
 Un ejemplo de logs de sincronización de los dos tipos se puede encontrar en la siguiente imagen: 
 
 ![Logs de sincronización de peer de Parity Ethereum en modo Light](/images/logs.png)
-## Pending:
 
-* Docker-compose
-* Screenshots
+## Despliegue de cliente ligero con Docker-Compose
+
+Para desplega el nodo en modo ligero usando Docker-Compose hace falta especificar en el yaml lo necesario para que el nodo funcione:
+
+- Puertos 8545, 8546, 30303 (TCP y UDP).
+- Comando inicial señalando que la configuración del nodo se encuentra en el archivo indicado.
+- Volumen para compartir por una parte el archivo de configuración y por otra los arhivos de la red que se generen y descarguen.
+
+Se puede encontrar un ejemplo del [docker-compose.yaml](docker-compose.yaml) en este respositorio.
+
+Lo siguiente es generar el archivo de configuración para el nodo. En este archivo se indica: 
+
+- Se usa el cliente en modo Light.
+- Red que se va a usar.
+- Base path, de esta manera se puede indicar que todos los archivos se guarden en el volumen compartido de forma que sea más persistente que el contenedor.
+- Configuraciones específicas del Light mode, mayormente tiempos.
+- Resto de configuraciones comunes al modo normal.
  
+## Despliegue de Parity Ethereum en Kubernetes
+
+Desplegarlo en Kubernetes es similar a desplegarlo con Docker-Compose, de hecho existe una herramienta, [Kompose](http://kompose.io/), que transforma los archivos de Docker-Compose en los archivos necesarios para el despliegue en K8S.
+
+El despliegue se puede dividir en tres grupos importantes: un volumen persistente en el que guardar la información en ambos sentidos, un despliegue que contenga el contenedor así como los puertos y demás, y un servicio que exponga el despliegue al exterior. El objetivo del volumen persistente es que el nodo tenga acceso al arhivo de configuración y que el nodo guarde la información de la cadena que tanto tarda en sincronizar, de esta forma se puede parar el cluster y que cuando se vuelva a lanzar el nodo de Parity Ethereum se encuentre en el mismo estado que antes.
+
+###Volumen persistente:
+
+Para que sea persistente en [Minikube](https://kubernetes.io/es/docs/tasks/tools/install-minikube/), el directorio elegido debe ser alguno de entre los siguientes, ya que cuando se pare Minikube se perderán los datos que no estén en estos directorios:
+
+- /data
+- /var/lib/minikube
+- /var/lib/docker
+- /tmp/hostpath-pv
+- /tmp/hostpath-provisioner
+
+Si se elige un directorio diferente a los de arriba, cuando se reinicie el cluster, el contenedor dará un error y no se podrá iniciar. Esto es consecuencia de que intenta encontrar un archivo inexistente tras el reinicio del cluster.
+
+
+
+###Despligue:
+
+##Servicio: 
 
 ## Referencias
 

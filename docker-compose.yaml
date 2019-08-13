@@ -1,0 +1,13 @@
+version: "3"
+services:
+  parity:
+    image: parity/parity:v2.5.5-stable
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "30303:30303"
+      - "30303:30303/udp"
+    volumes:
+      - ~/ethereum/parity/:/home/parity/.local/share/io.parity.ethereum/
+    command: sleep 50000
+    command: --config /home/parity/.local/share/io.parity.ethereum/config.toml
