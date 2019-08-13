@@ -105,7 +105,7 @@ Una vez el nodo se encuentra sincronizado, en el log que aparece en la pantalla 
 
 Un ejemplo de logs de sincronización de los dos tipos se puede encontrar en la siguiente imagen: 
 
-[Logs de sincronización de peer de Parity Ethereum en modo Light](/images/logs.png)
+![Logs de sincronización de peer de Parity Ethereum en modo Light](/images/logs.png)
 ## Pending:
 
 * Docker-compose
