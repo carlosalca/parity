@@ -84,16 +84,31 @@ $ docker run -ti -p 8545:8545 -p 8546:8546 -p 30303:30303 -p 30303:30303/udp -v 
 
 Cuando se despliega el contendor por primera vez, Parity tiene que sincronizarse y descargarse^* todos los bloques de la red establecida. Los parametros varían en función si se he elige el modo light o no. Durante esta sincronización del modo light se pueden ver los siguientes parámetros:
 
-- **\#10643457**: numero del último bloque procesado.
-- **  **
--
--
--
+- **\#10643457** : numero del último bloque procesado.
+- **aa97...42d2** : hash de la cabecera.
+- **100 hdr/s** : número de cabeceras por segundo (headers per second). 
+- **0+** : cola de cabeceras sin verificar.
+- **2015** : cola de cabeceras.
+- **1/20** : peers activos/número máximo de peers configurado.
+- **9 MiB cache** : blockchain cache 
+- **18 MiB queue** : memoria de cola usada (contiene información sobre las cabeceras en cola).
+- **RPC 0 conn** : número de conexiones RPC al nodo.
+- **0 req/s** : número de peticiones RPC por segundo.
+- **0 \mus** : tiempo medio de respuesta para las peticiones.
 
+Una vez el nodo se encuentra sincronizado, en el log que aparece en la pantalla aparece la importación de algunas cabeceras:
+
+- **Imported \#10643457** : número de bloque del que se recibe la cabecera desde los peers.
+- **0x86ed...6288** : hash de la cabecera.
+- **(2.5 Mgas)** : million gas usado en el bloque importado.
+- **+ another 3 header(s)** : aparece cuando 2 o más cabeceras se importan y se enseña solo la información sobre una.
+
+Un ejemplo de logs de sincronización de los dos tipos se puede encontrar en la siguiente imagen: 
+
+[Logs de sincronización de peer de Parity Ethereum en modo Light](/images/logs.png)
 ## Pending:
 
 * Docker-compose
-* Sync log meaning
 * Screenshots
  
 
